@@ -1,0 +1,27 @@
+<div class="ui raised segment">
+  <h2 class="ui header">Formular nume/prenume si data nasterii</h2>
+</div>
+<form [formGroup]="myForm"
+  (ngSubmit)="onSubmit(myForm.value)"
+  class='ui form'>
+  <div class="field" [class.error]="myForm.controls['nume'].hasError('required')">
+    <label for="nume">Nume:</label>
+    <input type="text" id="numeInput" placeholder="NUME" [formControl]="myForm.controls['nume']">
+  </div>
+  <div class="field" [class.error]="myForm.controls['prenume'].hasError('required')">
+    <label for="prenume">Prenume:</label>
+    <input type="text" id="prenumeInput" placeholder="PRENUME" [formControl]="myForm.controls['prenume']">
+  </div>
+  <div class="field" [class.error]="myForm.controls['dataNasterii'].hasError('required')">
+    <label for="dataNasterii">Data Nasterii:</label>
+    <input type="text" id="dataNasteriiInput" placeholder="DATA NASTERII" [formControl]="myForm.controls['dataNasterii']">
+  </div>
+  <button type="submit" class="ui button">Trimite</button>
+</form>
+
+<div *ngIf="myForm.controls['nume'].hasError('required')"
+class="ui error message">Completeaza campul Nume...</div>
+<div *ngIf="myForm.controls['prenume'].hasError('required')"
+class="ui error message">Completeaza campul Prenume...</div>
+<div *ngIf="myForm.controls['dataNasterii'].hasError('data')"
+class="ui error message">DataInvalida...</div>
